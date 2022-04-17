@@ -2,15 +2,8 @@
 @using Satistic.Models.ViewModels
 @model MoadiViewModel
 @{
-    var XLabels = "[\"ماشین لباسشویی دوو سری کاریزما مدل DWK-8140 ظرفیت 8 کیلوگرم \",\"تلویزیون ال ای دی ال جی مدل 43LJ52100 سایز 43 اینچ\",\"ماشین لباسشویی دوو سری کاریزما مدل DWK-8140 ظرفیت 8 کیلوگرم \",\"تلویزیون ال ای دی ال جی مدل 43LJ52100 سایز 43 اینچ\",\"ماشین لباسشویی دوو سری کاریزما مدل DWK-8140 ظرفیت 8 کیلوگرم \",\"تلویزیون ال ای دی ال جی مدل 43LJ52100 سایز 43 اینچ\"]";
-    var YValues= Newtonsoft.Json.JsonConvert.SerializeObject("{  25 , 36  }");
-    //if (Model.ChartViewModels!=null)
-    //    {
-    //        XLabels = Newtonsoft.Json.JsonConvert.SerializeObject(Model.ChartViewModels.Select(x => x.Step).ToList());
-    //        YValues = Newtonsoft.Json.JsonConvert.SerializeObject(Model.ChartViewModels.Select(x => x.Value).ToList());
 
-    //    }
- }
+}
      
 <section class="basic-elements" dir="rtl">
     <form method="get" asp-action="Lookup" asp-controller="Home" dir="rtl">
@@ -133,10 +126,9 @@
                  
        @*</div>*@
  </section>
-      
+                  
+
 <script>
-
-
 function ShowDetailsModal(XLabels,YValues) {
         var xLables=[];
         var yValues=[];
@@ -297,15 +289,16 @@ function GetDetails(sh_ezharname) {
                         if(element.field_Name  == "r_DaramadEbrazi" || element.field_Name == "t_DaramadTashkhis" ||
                                  element.field_Name  == "e_DaramadEteraz" || element.field_Name  == "b_DaramadBadvi" || element.field_Name  == "gh_DaramadGhatee")
                         {
-                            if(element.field_Value == "")
+                            if(element.field_Value != "")
                             {
-                                 YValues+= " 0 ," ;
-                            }
-                            else 
-                            {
+                            //     YValues+= " 0 ," ;
+                            //}
+                            //else 
+                            //{
                                 YValues+= element.field_Value +",";
+                                XLabels+=element.field_Name +",";
+
                             }
-                            XLabels+=element.field_Name +",";
                             //JsonChart+="{ 'Step':'"+element.field_Name +"',"+"'Value':'"+element.field_Value+"'},";
                         }
                        
@@ -377,6 +370,20 @@ function GetDetails(sh_ezharname) {
                
             });
     }
+
+ function openContent(evt, tabName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
 </script>
 <script src="~/js/Chart.bundle.min.js"></script>
 <script src="~/js/jquery-3.3.1.min.js"></script>
@@ -412,16 +419,26 @@ function GetDetails(sh_ezharname) {
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body"  >
-                     <div class="chart-container">
-                            <canvas id="chart" style="width:400px; height:200px"></canvas>
-                     </div>
+                <div >
 
-                    <div id="Flowchart">
-                      
-                        @await Html.PartialAsync("Flowchart")
-                       
+                    <div class="tab" style="background-color: #ceebe1;  overflow: hidden; border: 1px solid #ccc;" dir="rtl">
+                        <button class="tablinks" onclick="openContent(event, 'Flowchart')">فلوچارت</button>
+                        <button class="tablinks" onclick="openContent(event, 'Chart')">نمودار وضعیت </button>
                     </div>
+
+                    <div id="Flowchart" class="tabcontent">
+                                @await Html.PartialAsync("Flowchart")
+
+                    </div>
+
+                     <div id="Chart" class="tabcontent">
+                      <h3>نمودار وضعیت </h3>
+                         <div class="chart-container">
+                                    <canvas id="chart" style="width:400px; height:200px"></canvas>
+                                </div>
+
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
