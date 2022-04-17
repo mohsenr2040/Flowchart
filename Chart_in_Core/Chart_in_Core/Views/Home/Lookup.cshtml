@@ -2,7 +2,7 @@
 @using Satistic.Models.ViewModels
 @model MoadiViewModel
 @{
-    var XLabels =  Newtonsoft.Json.JsonConvert.SerializeObject("{ mohsen,ali}");
+    var XLabels = "[\"ماشین لباسشویی دوو سری کاریزما مدل DWK-8140 ظرفیت 8 کیلوگرم \",\"تلویزیون ال ای دی ال جی مدل 43LJ52100 سایز 43 اینچ\",\"ماشین لباسشویی دوو سری کاریزما مدل DWK-8140 ظرفیت 8 کیلوگرم \",\"تلویزیون ال ای دی ال جی مدل 43LJ52100 سایز 43 اینچ\",\"ماشین لباسشویی دوو سری کاریزما مدل DWK-8140 ظرفیت 8 کیلوگرم \",\"تلویزیون ال ای دی ال جی مدل 43LJ52100 سایز 43 اینچ\"]";
     var YValues= Newtonsoft.Json.JsonConvert.SerializeObject("{  25 , 36  }");
     //if (Model.ChartViewModels!=null)
     //    {
@@ -133,17 +133,17 @@
                  
        @*</div>*@
  </section>
-        <div class="chart-container">
-                <canvas id="chart" style="width:400px; height:200px"></canvas>
-         </div>
+      
 <script>
 
 
 function ShowDetailsModal(XLabels,YValues) {
-            alert(XLabels);
-            alert(YValues);
+        var xLables=[];
+        var yValues=[];
+        xLables=XLabels.split(',');
+        yValues=YValues.split(',');
 
-        //$('#DetailsModal').modal('show');
+        $('#DetailsModal').modal('show');
         setTimeout(function () {
             var modal = $('#DetailsModal');
             //var canvas = modal.find('.modal-body canvas');
@@ -156,7 +156,7 @@ function ShowDetailsModal(XLabels,YValues) {
             //var ctx = $('#DetailsModal').modal('show').getElementById(chartName).getContext('2d');
             var data = {
                 //labels: Html.Raw(XLabels),
-                labels: @Html.Raw(XLabels),
+                labels: xLables,
                 datasets: [{
                     label: "نمودار وضعیت",
                     backgroundColor: [
@@ -188,7 +188,7 @@ function ShowDetailsModal(XLabels,YValues) {
                         'rgba(255, 0, 255)'
                     ],
                     borderWidth: 1,
-                    data: @Html.Raw(YValues)
+                    data: yValues
                     //data:YValues
             }]
             };
@@ -235,9 +235,7 @@ function GetDetails(sh_ezharname) {
         var postData = {
             'Sh_ezharname': sh_ezharname,
         };
-          var JsonChart='[';
-         var YValues="";
-         var XLabels="";
+        
 
         $.ajax({
             contentType: 'application/x-www-form-urlencoded',
@@ -275,7 +273,10 @@ function GetDetails(sh_ezharname) {
                     var flg_tnc_=true;
                     var flg_gh_=true;
 
-                  
+                    var JsonChart='[';
+                     var YValues="";
+                     var XLabels="";
+
                    var htmltext_r_='<table><tbody> ';
                    var htmltext_t_='<table ><tbody> ';
                    var htmltext_e_='<table ><tbody> ';
@@ -412,7 +413,10 @@ function GetDetails(sh_ezharname) {
                     </button>
                 </div>
                 <div class="modal-body"  >
-                   
+                     <div class="chart-container">
+                            <canvas id="chart" style="width:400px; height:200px"></canvas>
+                     </div>
+
                     <div id="Flowchart">
                       
                         @await Html.PartialAsync("Flowchart")
