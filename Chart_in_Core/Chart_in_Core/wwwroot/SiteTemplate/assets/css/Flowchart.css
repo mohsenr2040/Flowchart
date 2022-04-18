@@ -130,7 +130,7 @@
     content: "";
     position: absolute;
     bottom: 100%;
-    left: 50%;
+    left: 20%;
     margin-left: -5px;
     border-width: 5px;
     border-style: solid;
@@ -145,11 +145,11 @@
 
 
 
- /*Style the tab*/ 
+ /*Style the tab*/
 .tab {
     overflow: hidden;
     border: 1px solid #ccc;
-    background-color: #f1f1f1;
+    background-color: #ceebe1;
 }
 
  /*Style the buttons inside the tab*/ 
@@ -174,9 +174,9 @@
     background-color: #ccc;
 }
 
- /*Style the tab content*/ 
+ /*Style the tab content*/
 .tabcontent {
-    display: none;
+    display: block;
     padding: 6px 12px;
     border: 1px solid #ccc;
     border-top: none;

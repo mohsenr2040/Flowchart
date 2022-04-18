@@ -472,6 +472,4 @@ E:\Projects\Office\new\Satistic-Chart\Chart_in_Core\Chart_in_Core\bin\Debug\net5
 E:\Projects\Office\new\Satistic-Chart\Chart_in_Core\Chart_in_Core\obj\Debug\net5.0\Chart_in_Core.Views.pdb
 E:\Projects\Office\new\Satistic-Chart\Chart_in_Core\Chart_in_Core\obj\Debug\net5.0\Chart_in_Core.csproj.CopyComplete
 E:\Projects\Office\new\Satistic-Chart\Chart_in_Core\Chart_in_Core\obj\Debug\net5.0\Chart_in_Core.genruntimeconfig.cache
-E:\Projects\Office\new\Satistic-Chart\Chart_in_Core\Chart_in_Core\obj\Debug\net5.0\Razor\Views\Home\Lookup1.cshtml.g.cs
-E:\Projects\Office\new\Satistic-Chart\Chart_in_Core\Chart_in_Core\obj\Debug\net5.0\Razor\Views\Home\Details.cshtml.g.cs
 E:\Projects\Office\new\Satistic-Chart\Chart_in_Core\Chart_in_Core\obj\Debug\net5.0\Razor\Views\Home\Flowchart.cshtml.g.cs

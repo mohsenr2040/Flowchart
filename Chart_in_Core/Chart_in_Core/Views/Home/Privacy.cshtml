@@ -5,6 +5,75 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
+    
+<style>
+.modall {
+   display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+</style>
+
+<script>
+    
+var modal = document.getElementById("myModal");
+
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+</script>
   <title>CSS Tabs</title>
   <meta charset=utf-8>
    <link rel="stylesheet" href="~/SiteTemplate/assets/css/Flowchart.css">
@@ -29,6 +98,131 @@
      
     </div>
   </div>
+
+<button id="myBtn">Open Modal</button>
+
+<!-- The Modal -->
+<div id="myModal" class="modall">
+
+  <!-- Modal content -->
+  <div class="modal-content" >
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+        <div class="flowbody" style="overflow-x:scroll ;">
+          <div id="wrapper" >
+              <span style="background-color: green;" class="label">
+                  <div class="tooltip"><span class="tooltiptext">
+                    <table >  
+                        <tbody>  <tr><td>r_MoadiName: </td> <td>محمود معصوم زاده جوزداني </td> </tr> 
+                            <tr><td>r_MoadiTIN: </td> <td>18167174280001 </td> </tr> 
+                            <tr><td>r_CodeRahgiriSabtenam: </td> <td>1186386639 </td> </tr> 
+                            <tr><td>r_ShenaseEzharnameh: </td> <td>100019 </td> </tr> 
+                            <tr><td>r_Manba: </td> <td>مالیات بر درآمد مشاغل </td> </tr> 
+                            <tr><td>r_Sal: </td> <td>1392 </td> </tr>
+                            <tr><td>r_Dore: </td> <td>1 </td> </tr> 
+                            <tr><td>r_MoadiType: </td> <td>حقیقی </td> </tr> 
+                            <tr><td>r_DaramadEbrazi: </td> <td>136863000 </td> </tr>
+                            <tr><td>r_MaliatEbrazi: </td> <td>27715750 </td> </tr> 
+                            <tr><td>r_ManbaVoroodEzharname: </td> <td> </td> </tr> 
+                            <tr><td>r_RiskEzharname: </td> <td> </td> </tr> 
+                            <tr><td>r_SalMaliStartDate: </td> <td>1392/01/01 </td> 
+                                </tr> <tr><td>r_SalMaliEndDate: </td> <td>1392/12/29 </td>
+                                    </tr> <tr><td>r_MianSali: </td> <td>خیر </td> </tr> </tbody> </table>
+                      </span>ارائه اظهارنامه</div>
+              </span>
+              <div class="branch ">
+                  <div class="entry sole">
+                      <span style="background-color: green;" class="label">
+                          درخواست اسناد و مدارک
+                      </span>
+                      <div class="branch ">
+                          <div class="entry sole">
+                              <span style="background-color: green;" class="label">
+                                  <div class="tooltip"><span class="tooltiptext">
+                                      <table dir="rtl">
+                                          <tr>
+                                              <td style="width:100px;"> تاریخ صدور :</td>
+                                              <td>1400/03/18</td>
+                                          </tr>
+                                          <tr>
+                                              <td style="width:100px;"> شماره برگ تشخیص:</td>
+                                              <td>140654198618</td>
+                                          </tr>
+                                      </table>
+                                  </span>صدور برگ تشخیص</div>
+                                  </span>
+                              <div class="branch lv1">
+                                  <div class="entry">
+                                      <span style="background-color: green;" class="label">اعتراض</span>
+                                      <div class="branch lv2">
+                                          <div class="entry">
+                                              <span class="label">Entry-1-1</span>
+                                              <div class="branch lv3">
+                                                  <div class="entry sole">
+                                                      <span class="label">Entry-1-1-1</span>
+              
+                                                      <div class="branch ">
+                                                          <div class="entry ">
+                                                              <span class="label">Entry-1-1-1-1</span>
+              
+                                                              <div class="branch">
+                                                                  <div class="entry sole">
+                                                                      <span class="label">Entry-1-1-1-1-1</span>
+                                                                      <div class="branch">
+                                                                          <div class="entry sole">
+                                                                              <span class="label">Entry-1-1-1-1-1-1</span>
+              
+                                                                          </div>
+                                                                      </div>
+                                                                  </div>
+                                                              </div>
+                                                          </div>
+                                                          <div class="entry ">
+                                                              <span class="label">Entry-1-1-1-2</span>
+              
+                                                          </div>
+                                                      </div>
+              
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="entry">
+                                              <span class="label">Entry-1-2</span>
+                                              <div class="branch lv3">
+                                                  <div class="entry sole"><span class="label">Entry-1-2-1</span></div>
+                                              </div>
+                                          </div>
+                                          <div class="entry">
+                                              <span class="label">Entry-1-3</span>
+                                              <div class="branch lv3">
+                                                  <div class="entry sole">
+                                                      <span class="label">Entry-1-3-1</span>
+              
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="entry">
+                                      <span style="background-color: gray;" class="label">تمکین</span>
+                                      <div class="branch lv3">
+                                          <div class="entry sole"><span style="background-color: gray;" class="label">صدور برگ
+                                                  قطعی</span></div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+
+     </div>
+  </div>
+  
+</div>
 </body>
 
 </html>
