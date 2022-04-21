@@ -4,7 +4,6 @@
 @{
 
 }
-     
 <section class="basic-elements" dir="rtl">
     <form method="get" asp-action="Lookup" asp-controller="Home" dir="rtl">
         <div class="row">
@@ -109,8 +108,8 @@
                                 {
                                     @if(Model.MoadiShenases.Count==0)
                                     {
-                                        <div class="tab">
-                                            <p style="font-style:italic">اطلاعاتی برای نمایش وجود ندارد ...</p>
+                                        <div class="tab" style="background-color:#ffdfde;vertical-align:middle">
+                                            <p style="font-style:italic;font-size:small"> اطلاعاتی برای نمایش وجود ندارد ...</p>
                                         </div>
                                     }
                                 }
@@ -134,6 +133,11 @@ function ShowDetailsModal(XLabels,YValues) {
         var yValues=[];
         xLables=XLabels.split(',');
         yValues=YValues.split(',');
+        
+         document.getElementById("Chart").style.display = "block";
+         document.getElementById("Flowchart").style.display = "none";
+         document.getElementById("btn_Flow").className="tablinks";
+         document.getElementById("btn_chart").className="tablinks active";
 
         $('#DetailsModal').modal('show');
         setTimeout(function () {
@@ -255,6 +259,7 @@ function GetDetails(sh_ezharname) {
                              //}
                     var flg_r_=true;
                     var flg_t_=true;
+                    var flg_te_=true;
                     var flg_e_=true;
                     var flg_ec_=true;
                     var flg_b_=true;
@@ -269,6 +274,7 @@ function GetDetails(sh_ezharname) {
 
                    var htmltext_r_='<table><tbody> ';
                    var htmltext_t_='<table ><tbody> ';
+                   var htmltext_te_='<table ><tbody> ';
                    var htmltext_e_='<table ><tbody> ';
                    var htmltext_ec_='<table ><tbody> ';
                    var htmltext_b_='<table ><tbody> ';
@@ -277,15 +283,16 @@ function GetDetails(sh_ezharname) {
                    var htmltext_tnc_='<table ><tbody> ';
                    var htmltext_gh_='<table > <tbody> ';
                    $.each(data, function(index, element) {
-                       
+
+                       //----------------------------------
                         if(index == data.length -1)
                         {
                             XLabels= XLabels.substring(0, XLabels.length  -1);
                             YValues= YValues.substring(0, YValues.length  -1);
                              ShowDetailsModal(XLabels,YValues);
                         } 
-                        if(element.field_Name  == "r_DaramadEbrazi" || element.field_Name == "t_DaramadTashkhis" ||
-                                 element.field_Name  == "e_DaramadEteraz" || element.field_Name  == "b_DaramadBadvi" || element.field_Name  == "gh_DaramadGhatee")
+                        if(element.field_Name  == "r_مالیات ابرازی" || element.field_Name == "t_مالیات تشخیص" ||
+                                 element.field_Name  == "e_مالیات اعتراض" || element.field_Name  == "b_DaramadBadvi" || element.field_Name  == "gh_مالیات قطعی")
                         {
                             if(element.field_Value != "")
                             {
@@ -294,59 +301,150 @@ function GetDetails(sh_ezharname) {
                             //else 
                             //{
                                 YValues+= element.field_Value +",";
-                                XLabels+=element.field_Name +",";
+                                XLabels+=element.field_Name.split('_')[1] +",";
 
                             }
                             //JsonChart+="{ 'Step':'"+element.field_Name +"',"+"'Value':'"+element.field_Value+"'},";
                         }
-                       
-                            if(element.field_Name.substring(0,2)=="r_" )
-                                if( element.field_Value != null )
-                                {
-                                    htmltext_r_+=' <tr><td>'+element.field_Name +': </td>' +' <td>'+element.field_Value+' </td> </tr>';
-                                    flg_r_=false;
-                                }
-                              
-                             if(element.field_Name.substring(0,2)!="r_" && flg_r_==false)
+                         //-----------------------------------------------
+                            if(element.field_Name.substring(0,2)=="r_" && element.field_Value != "" )
+                            {
+                                htmltext_r_+=' <tr><td>'+element.field_Name.split('_')[1] +': </td>' +' <td>'+element.field_Value+' </td> </tr>';
+                                flg_r_=false;
+                            }
+
+                            if(element.field_Name.substring(0,2)!="r_" && flg_r_==false)
                             {
                                 htmltext_r_ += ' </tbody> </table>';
                                 document.getElementById("spn_ezhar").innerHTML=htmltext_r_;
                                 flg_r_=true;
                             }
-                                      
-                           
-                            if(element.field_Name.substring(0,2)=="t_" )
-                                if( element.field_Value != null )
-                                {
-                                    htmltext_t_+=' <tr><td>'+element.field_Name +': </td>' +' <td>'+element.field_Value+' </td> </tr>';
-                                    flg_t_=false;
-                                }
-                             if(element.field_Name.substring(0,2)!="t_" && flg_t_==false)
+
+                            //----------------------------------------
+                            if(element.field_Name.substring(0,2)=="t_" && element.field_Value != "")
+                            {
+                                htmltext_t_+=' <tr><td>'+element.field_Name.split('_')[1]  +': </td>' +' <td>'+element.field_Value+' </td> </tr>';
+                                flg_t_=false;
+                            }
+                            if(element.field_Name.substring(0,2)!="t_" && flg_t_==false)
                             {
                                 htmltext_t_ += ' </tbody> </table>';
                                 document.getElementById("spn_tashkhis").innerHTML=htmltext_t_;
+                                document.getElementById('spn_tashkhis_label').style.backgroundColor="green";
                                 flg_t_=true;
                             }
-                                
-                            // if(element.field_Name.substring(0,2)=="r_" )
-                            //    if( element.field_Value != null )
-                            //    {
-                            //        htmltext_r_+=' <tr><td>'+element.field_Name +': </td>' +' <td>'+element.field_Value+' </td> </tr>';
-                            //    }
-                            // if(element.field_Name.substring(0,2)!="r_" && flg_r_==false)
+                              //----------------------------------------
+                            if(element.field_Name.substring(0,2)=="te_" && element.field_Value != "")
+                            {
+                                document.getElementById('spn_eblagh_t').style.backgroundColor="red";
+                                htmltext_te_+=' <tr><td>'+element.field_Name.split('_')[1]  +': </td>' +' <td>'+element.field_Value+' </td> </tr>';
+                                flg_te_=false;
+                            }
+                            if(element.field_Name.substring(0,2)!="te_" && flg_te_==false)
+                            {
+                                htmltext_te_ += ' </tbody> </table>';
+                                document.getElementById("spn_eblagh_t").innerHTML=htmltext_te_;
+                                document.getElementById('spn_eblagh_t_label').style.backgroundColor="green";
+                                flg_te_=true;
+                            }
+                            //------------------------------------
+                            if(element.field_Name.substring(0,2)=="e_" && element.field_Value != "")
+                            {
+                                htmltext_e_+=' <tr><td>'+element.field_Name.split('_')[1] +': </td>' +' <td>'+element.field_Value+' </td> </tr>';
+                                flg_e_=false;
+                            }
+                            if(element.field_Name.substring(0,2)!="e_" && flg_e_==false)
+                            {
+                                htmltext_e_ += ' </tbody> </table>';
+                                document.getElementById("spn_eteraz").innerHTML=htmltext_e_;
+                                document.getElementById('spn_eteraz_label').style.backgroundColor="green";
+                                flg_e_=true;
+                            }
+                            //---------------------------------------
+                            //if(element.field_Name.substring(0,2)=="ec_" && element.field_Value != "")
                             //{
-                            //    htmltext_r_ += ' </tbody> </table>';
-                            //    document.getElementById("spn_ezhar").innerHTML=htmltext_r_;
-                            //    flg_r_=true;
+                            //    htmltext_ec_+=' <tr><td>'+element.field_Name +': </td>' +' <td>'+element.field_Value+' </td> </tr>';
+                            //    flg_ec_=false;
                             //}
+                            //if(element.field_Name.substring(0,2)!="ec_" && flg_ec_==false)
+                            //{
+                            //    htmltext_ec_ += ' </tbody> </table>';
+                            //    document.getElementById("spn_ezhar").innerHTML=htmltext_ec_;
+                            //    document.getElementById('spn_tashkhis').style.backgroundColor="green";
+                            //    flg_ec_=true;
+                            //}
+                         
+                                //---------------------------------------------
+                            if(element.field_Name.substring(0,2)=="b_" && element.field_Value != "")
+                            {
+                                htmltext_b_+=' <tr><td>'+element.field_Name.split('_')[1] +': </td>' +' <td>'+element.field_Value+' </td> </tr>';
+                                flg_b_=false;
+                            }
+                            if(element.field_Name.substring(0,2)!="b_" && flg_b_==false)
+                            {
+                                htmltext_b_ += ' </tbody> </table>';
+                                document.getElementById("spn_badvi").innerHTML=htmltext_b_;
+                                document.getElementById('spn_badvi_label').style.backgroundColor="green";
+                                flg_b_=true;
+                            }
+                                //---------------------------------------------
+                            if(element.field_Name.substring(0,2)=="bc_" && element.field_Value != "")
+                            {
+                                htmltext_bc_+=' <tr><td>'+element.field_Name.split('_')[1] +': </td>' +' <td>'+element.field_Value+' </td> </tr>';
+                                flg_bc_=false;
+                            }
+                            if(element.field_Name.substring(0,2)!="bc_" && flg_bc_==false)
+                            {
+                                htmltext_bc_ += ' </tbody> </table>';
+                                document.getElementById("spn_ezhar").innerHTML=htmltext_bc_;
+                                document.getElementById('spn_tashkhis').style.backgroundColor="green";
+                                flg_bc_=true;
+                            }
+                                //---------------------------------------------
+                            if(element.field_Name.substring(0,2)=="tn_" && element.field_Value != "" )
+                            {
+                                htmltext_tn_+=' <tr><td>'+element.field_Name.split('_')[1] +': </td>' +' <td>'+element.field_Value+' </td> </tr>';
+                                flg_tn_=false
+                            }
+                            if(element.field_Name.substring(0,2)!="tn_" && flg_tn_==false)
+                            {
+                                htmltext_tn_ += ' </tbody> </table>';
+                                document.getElementById("spn_heiattajdid").innerHTML=htmltext_tn_;
+                                document.getElementById('spn_heiattajdid_label').style.backgroundColor="green";
+                                flg_tn_=true;
+                            }
+                                //---------------------------------------------
+                                //if(element.field_Name.substring(0,2)=="tnc_" && element.field_Value != "")
+                                //{
+                                //    htmltext_tnc_+=' <tr><td>'+element.field_Name +': </td>' +' <td>'+element.field_Value+' </td> </tr>';
+                                //    flg_tnc_=false;
+                                //}
+                                //if(element.field_Name.substring(0,2)!="tn_" && flg_tnc_==false)
+                                // {
+                                //    htmltext_tnc_ += ' </tbody> </table>';
+                                //    document.getElementById("spn_ezhar").innerHTML=htmltext_tnc_;
+                                //    document.getElementById('spn_tashkhis').style.backgroundColor="green";
+                                //    flg_tnc_=true;
+                                // }
+                                //---------------------------------------------
+                                if(element.field_Name.substring(0,2)=="gh_" && element.field_Value != "" )
+                                {
+                                    alert(element.field_Value);
+                                    htmltext_gh_+=' <tr><td>'+element.field_Name.split('_')[1] +': </td>' +' <td>'+element.field_Value+' </td> </tr>';
+                                    flg_gh_=false;
+                                }
+                                if(element.field_Name.substring(0,2)!="gh_" && flg_gh_==false)
+                                 {
+                                    htmltext_gh_ += ' </tbody> </table>';
+                                    document.getElementById("spn_ghatee").innerHTML=htmltext_gh_;
+                                    document.getElementById('spn_ghatee_label').style.backgroundColor="green";
+                                    flg_gh_=true;
+                                }
                    });  
                     
                 }
                        
         });
-                        //alert(XLabels);
-                        //YValues= YValues.Substring(0, YValues.Length-1)+"]";
-                        // JsonChart=JsonChart.substring(0,JsonChart.length-1)+"]";
        
     }
 
@@ -398,14 +496,14 @@ function openContent(evt, tabName) {
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div  style="text-align:right" >
-                    <div class="tab" >
-                        <button class="tablinks" onclick="openContent(event, 'Flowchart')">فلوچارت</button>
-                        <button class="tablinks" onclick="openContent(event, 'Chart')">نمودار وضعیت </button>
+                <div   >
+                    <div class="tab" style="text-align:right">
+                        <button id="btn_Flow" class="tablinks" onclick="openContent(event, 'Flowchart')">فلوچارت</button>
+                        <button id="btn_chart" class="tablinks" onclick="openContent(event, 'Chart')">نمودار وضعیت </button>
                     </div>
 
                     <div id="Flowchart" class="tabcontent"  >
-                           @await Html.PartialAsync("Flowchart")
+                           @await Html.PartialAsync("Flowchart2")
                     </div>
 
                      <div id="Chart" class="tabcontent" >
@@ -414,6 +512,7 @@ function openContent(evt, tabName) {
                          </div>
                     </div>
 
+ 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
