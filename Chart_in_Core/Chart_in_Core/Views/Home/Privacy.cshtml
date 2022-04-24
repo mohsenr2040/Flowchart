@@ -45,6 +45,27 @@
   cursor: pointer;
 }
 
+html {
+  min-height: 100%;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+}
+
+.overlay {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0,0,0,0.8);
+  position: absolute;
+  z-index: 100;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
 </style>
 
 <script>
@@ -73,7 +94,16 @@ window.onclick = function(event) {
   }
 }
 
+ function sshow()
+    {
+         $('#waiting').show();
+            $(this).prop('disabled', true);
+           document.getElementById('ModalPopup').style.visibility = 'visible';
+    }
+
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
   <title>CSS Tabs</title>
   <meta charset=utf-8>
    <link rel="stylesheet" href="~/SiteTemplate/assets/css/Flowchart.css">
@@ -105,124 +135,33 @@ window.onclick = function(event) {
 <div id="myModal" class="modall">
 
   <!-- Modal content -->
-  <div class="modal-content" >
+  <div class="modal" >
     <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
       </div>
-        <div class="flowbody" style="overflow-x:scroll ;">
-          <div id="wrapper" >
-              <span style="background-color: green;" class="label">
-                  <div class="tooltip"><span class="tooltiptext">
-                    <table >  
-                        <tbody>  <tr><td>r_MoadiName: </td> <td>محمود معصوم زاده جوزداني </td> </tr> 
-                            <tr><td>r_MoadiTIN: </td> <td>18167174280001 </td> </tr> 
-                            <tr><td>r_CodeRahgiriSabtenam: </td> <td>1186386639 </td> </tr> 
-                            <tr><td>r_ShenaseEzharnameh: </td> <td>100019 </td> </tr> 
-                            <tr><td>r_Manba: </td> <td>مالیات بر درآمد مشاغل </td> </tr> 
-                            <tr><td>r_Sal: </td> <td>1392 </td> </tr>
-                            <tr><td>r_Dore: </td> <td>1 </td> </tr> 
-                            <tr><td>r_MoadiType: </td> <td>حقیقی </td> </tr> 
-                            <tr><td>r_DaramadEbrazi: </td> <td>136863000 </td> </tr>
-                            <tr><td>r_MaliatEbrazi: </td> <td>27715750 </td> </tr> 
-                            <tr><td>r_ManbaVoroodEzharname: </td> <td> </td> </tr> 
-                            <tr><td>r_RiskEzharname: </td> <td> </td> </tr> 
-                            <tr><td>r_SalMaliStartDate: </td> <td>1392/01/01 </td> 
-                                </tr> <tr><td>r_SalMaliEndDate: </td> <td>1392/12/29 </td>
-                                    </tr> <tr><td>r_MianSali: </td> <td>خیر </td> </tr> </tbody> </table>
-                      </span>ارائه اظهارنامه</div>
-              </span>
-              <div class="branch ">
-                  <div class="entry sole">
-                      <span style="background-color: green;" class="label">
-                          درخواست اسناد و مدارک
-                      </span>
-                      <div class="branch ">
-                          <div class="entry sole">
-                              <span style="background-color: green;" class="label">
-                                  <div class="tooltip"><span class="tooltiptext">
-                                      <table dir="rtl">
-                                          <tr>
-                                              <td style="width:100px;"> تاریخ صدور :</td>
-                                              <td>1400/03/18</td>
-                                          </tr>
-                                          <tr>
-                                              <td style="width:100px;"> شماره برگ تشخیص:</td>
-                                              <td>140654198618</td>
-                                          </tr>
-                                      </table>
-                                  </span>صدور برگ تشخیص</div>
-                                  </span>
-                              <div class="branch lv1">
-                                  <div class="entry">
-                                      <span style="background-color: green;" class="label">اعتراض</span>
-                                      <div class="branch lv2">
-                                          <div class="entry">
-                                              <span class="label">Entry-1-1</span>
-                                              <div class="branch lv3">
-                                                  <div class="entry sole">
-                                                      <span class="label">Entry-1-1-1</span>
-              
-                                                      <div class="branch ">
-                                                          <div class="entry ">
-                                                              <span class="label">Entry-1-1-1-1</span>
-              
-                                                              <div class="branch">
-                                                                  <div class="entry sole">
-                                                                      <span class="label">Entry-1-1-1-1-1</span>
-                                                                      <div class="branch">
-                                                                          <div class="entry sole">
-                                                                              <span class="label">Entry-1-1-1-1-1-1</span>
-              
-                                                                          </div>
-                                                                      </div>
-                                                                  </div>
-                                                              </div>
-                                                          </div>
-                                                          <div class="entry ">
-                                                              <span class="label">Entry-1-1-1-2</span>
-              
-                                                          </div>
-                                                      </div>
-              
-                                                  </div>
-                                              </div>
-                                          </div>
-                                          <div class="entry">
-                                              <span class="label">Entry-1-2</span>
-                                              <div class="branch lv3">
-                                                  <div class="entry sole"><span class="label">Entry-1-2-1</span></div>
-                                              </div>
-                                          </div>
-                                          <div class="entry">
-                                              <span class="label">Entry-1-3</span>
-                                              <div class="branch lv3">
-                                                  <div class="entry sole">
-                                                      <span class="label">Entry-1-3-1</span>
-              
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <div class="entry">
-                                      <span style="background-color: gray;" class="label">تمکین</span>
-                                      <div class="branch lv3">
-                                          <div class="entry sole"><span style="background-color: gray;" class="label">صدور برگ
-                                                  قطعی</span></div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-            </div>
-
-     </div>
   </div>
   
 </div>
+
+<input type="button" value="showwait" onclick="sshow()" />
+
+
+ @*<div id="ModalPopup" style="visibility: hidden;">
+  <div style="position: fixed; width: 100%; height: 100%; z-index: 10002; background-color: Gray;">
+  </div>
+  <table style="position: fixed; width: 100%; height: 100%; z-index: 10003;">
+    <tr>
+      <td align="center" valign="middle">
+        <div style="color: Black; font-weight: bolder; background-color: White; padding: 15px;
+          width: 200px;">
+          <asp:Image ID="Image3" runat="server" ImageUrl="~/Images/progress.gif" />
+          Procesando....
+        </div>
+      </td>
+    </tr>
+  </table>
+  </div>*@
+  <div id="waiting" style="display:none">Please wait...</div>
+
 </body>
 
 </html>
