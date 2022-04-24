@@ -128,6 +128,7 @@
                   
 
 <script>
+
 function ShowDetailsModal(XLabels,YValues) {
         var xLables=[];
         var yValues=[];
@@ -229,7 +230,6 @@ function GetDetails(sh_ezharname) {
         var postData = {
             'Sh_ezharname': sh_ezharname,
         };
-        
 
         $.ajax({
             contentType: 'application/x-www-form-urlencoded',
@@ -238,25 +238,6 @@ function GetDetails(sh_ezharname) {
                 url: "Details",
                 data: postData,
                 success: function (data) {
-                    //console.log(data)
-                    //data=JSON.stringify(data);
-                    //alert(data);
-                           //if(element.field_Name=="t_TashkhisNo" )
-                             //   if( element.field_Value != null )
-                             //        document.getElementById('spn_tashkhis').style.backgroundColor="green";
-
-                             //if(element.field_Name=="e_DarkhastEterazNo" ) 
-                             //   if( element.field_Value != "" )
-                             //       document.getElementById('spn_eteraz').style.backgroundColor="green";
-                             //   else
-                             //       document.getElementById('spn_tamkin').style.backgroundColor="green";
-
-                             //if(element.field_Name=="gh_GhateeNo")
-                             //{
-                         
-                             //  if( element.field_Value != null  ) 
-                             //     document.getElementById('spn_ghatee').style.backgroundColor="green";
-                             //}
                     var flg_r_=true;
                     var flg_t_=true;
                     var flg_te_=true;
@@ -282,6 +263,21 @@ function GetDetails(sh_ezharname) {
                    var htmltext_tn_='<table ><tbody> ';
                    var htmltext_tnc_='<table ><tbody> ';
                    var htmltext_gh_='<table > <tbody> ';
+
+                    document.getElementById("spn_ezhar").innerHTML="";
+                    document.getElementById("spn_tashkhis").innerHTML="";
+                    document.getElementById("spn_eblagh_t").innerHTML='';
+                    document.getElementById("spn_eteraz").innerHTML="";
+                    document.getElementById("spn_badvi").innerHTML="";
+                    document.getElementById("spn_heiattajdid").innerHTML="";
+                    document.getElementById("spn_ghatee").innerHTML='';
+                    document.getElementById('spn_tashkhis_label').style.backgroundColor="gray";
+                    document.getElementById('spn_eblagh_t_label').style.backgroundColor="gray";
+                    document.getElementById('spn_eteraz_label').style.backgroundColor="gray";
+                    document.getElementById('spn_badvi_label').style.backgroundColor="gray";
+                    document.getElementById('spn_heiattajdid_label').style.backgroundColor="gray";
+                    document.getElementById('spn_ghatee_label').style.backgroundColor="gray";
+
                    $.each(data, function(index, element) {
 
                        //----------------------------------
@@ -333,20 +329,21 @@ function GetDetails(sh_ezharname) {
                                 document.getElementById('spn_tashkhis_label').style.backgroundColor="green";
                                 flg_t_=true;
                             }
-                              //----------------------------------------
-                            if(element.field_Name.substring(0,2)=="te_" && element.field_Value != "")
+
+                            //----------------------------------------
+                            if(element.field_Name.split('_')[0]=="te" && element.field_Value != "")
                             {
-                                document.getElementById('spn_eblagh_t').style.backgroundColor="red";
                                 htmltext_te_+=' <tr><td>'+element.field_Name.split('_')[1]  +': </td>' +' <td>'+element.field_Value+' </td> </tr>';
                                 flg_te_=false;
                             }
-                            if(element.field_Name.substring(0,2)!="te_" && flg_te_==false)
+                            if(element.field_Name.split('_')[0]!="te" && flg_te_==false)
                             {
                                 htmltext_te_ += ' </tbody> </table>';
                                 document.getElementById("spn_eblagh_t").innerHTML=htmltext_te_;
                                 document.getElementById('spn_eblagh_t_label').style.backgroundColor="green";
                                 flg_te_=true;
                             }
+
                             //------------------------------------
                             if(element.field_Name.substring(0,2)=="e_" && element.field_Value != "")
                             {
@@ -388,25 +385,25 @@ function GetDetails(sh_ezharname) {
                                 flg_b_=true;
                             }
                                 //---------------------------------------------
-                            if(element.field_Name.substring(0,2)=="bc_" && element.field_Value != "")
-                            {
-                                htmltext_bc_+=' <tr><td>'+element.field_Name.split('_')[1] +': </td>' +' <td>'+element.field_Value+' </td> </tr>';
-                                flg_bc_=false;
-                            }
-                            if(element.field_Name.substring(0,2)!="bc_" && flg_bc_==false)
-                            {
-                                htmltext_bc_ += ' </tbody> </table>';
-                                document.getElementById("spn_ezhar").innerHTML=htmltext_bc_;
-                                document.getElementById('spn_tashkhis').style.backgroundColor="green";
-                                flg_bc_=true;
-                            }
+                            //if(element.field_Name.substring(0,2)=="bc_" && element.field_Value != "")
+                            //{
+                            //    htmltext_bc_+=' <tr><td>'+element.field_Name.split('_')[1] +': </td>' +' <td>'+element.field_Value+' </td> </tr>';
+                            //    flg_bc_=false;
+                            //}
+                            //if(element.field_Name.substring(0,2)!="bc_" && flg_bc_==false)
+                            //{
+                            //    htmltext_bc_ += ' </tbody> </table>';
+                            //    document.getElementById("spn_ezhar").innerHTML=htmltext_bc_;
+                            //    document.getElementById('spn_tashkhis').style.backgroundColor="green";
+                            //    flg_bc_=true;
+                            //}
                                 //---------------------------------------------
-                            if(element.field_Name.substring(0,2)=="tn_" && element.field_Value != "" )
+                            if(element.field_Name.split('_')[0]=="tn" && element.field_Value != "" )
                             {
                                 htmltext_tn_+=' <tr><td>'+element.field_Name.split('_')[1] +': </td>' +' <td>'+element.field_Value+' </td> </tr>';
                                 flg_tn_=false
                             }
-                            if(element.field_Name.substring(0,2)!="tn_" && flg_tn_==false)
+                            if(element.field_Name.split('_')[0]!="tn" && flg_tn_==false)
                             {
                                 htmltext_tn_ += ' </tbody> </table>';
                                 document.getElementById("spn_heiattajdid").innerHTML=htmltext_tn_;
@@ -427,13 +424,12 @@ function GetDetails(sh_ezharname) {
                                 //    flg_tnc_=true;
                                 // }
                                 //---------------------------------------------
-                                if(element.field_Name.substring(0,2)=="gh_" && element.field_Value != "" )
+                                if(element.field_Name.split('_')[0]=="gh" && element.field_Value != "" )
                                 {
-                                    alert(element.field_Value);
                                     htmltext_gh_+=' <tr><td>'+element.field_Name.split('_')[1] +': </td>' +' <td>'+element.field_Value+' </td> </tr>';
                                     flg_gh_=false;
                                 }
-                                if(element.field_Name.substring(0,2)!="gh_" && flg_gh_==false)
+                                if(element.field_Name.split('_')[0]!="gh" && flg_gh_==false)
                                  {
                                     htmltext_gh_ += ' </tbody> </table>';
                                     document.getElementById("spn_ghatee").innerHTML=htmltext_gh_;
@@ -448,24 +444,6 @@ function GetDetails(sh_ezharname) {
        
     }
 
-
-function GetSellerProduct() {
-            var codmelli = $('#NationalCode').val();
-            var postData = {
-                'CodMelli': codmelli,
-            };
-            $.ajax({
-                contentType: 'application/x-www-form-urlencoded',
-                dataType: 'json',
-                type: "GET",
-                url: "Details",
-                data: postData,
-                    success: function (data) {
-                       
-                }
-               
-            });
-    }
 
 function openContent(evt, tabName) {
       var i, tabcontent, tablinks;
@@ -487,17 +465,17 @@ function openContent(evt, tabName) {
 @section Modals
 {
      <!-- Modal  -->
-    <div class="modal" id="DetailsModal" style="overflow:auto" >
+    <div class="modal" id="DetailsModal" style="overflow:auto;direction:ltr"  >
      
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header" style="text-align:right;direction:rtl">
                     <h5 class="modal-title" > جزئیات </h5>
                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div   >
-                    <div class="tab" style="text-align:right">
+                    <div class="tab" style="text-align:right;direction:rtl">
                         <button id="btn_Flow" class="tablinks" onclick="openContent(event, 'Flowchart')">فلوچارت</button>
                         <button id="btn_chart" class="tablinks" onclick="openContent(event, 'Chart')">نمودار وضعیت </button>
                     </div>
