@@ -288,7 +288,7 @@ function GetDetails(sh_ezharname) {
                              ShowDetailsModal(XLabels,YValues);
                         } 
                         if(element.field_Name  == "r_مالیات ابرازی" || element.field_Name == "t_مالیات تشخیص" ||
-                                 element.field_Name  == "e_مالیات اعتراض" || element.field_Name  == "b_DaramadBadvi" || element.field_Name  == "gh_مالیات قطعی")
+                                 element.field_Name  == "ec_مالیات اعتراض" || element.field_Name  == "b_DaramadBadvi" || element.field_Name  == "gh_مالیات قطعی")
                         {
                             if(element.field_Value != "")
                             {
@@ -358,18 +358,18 @@ function GetDetails(sh_ezharname) {
                                 flg_e_=true;
                             }
                             //---------------------------------------
-                            //if(element.field_Name.substring(0,2)=="ec_" && element.field_Value != "")
-                            //{
-                            //    htmltext_ec_+=' <tr><td>'+element.field_Name +': </td>' +' <td>'+element.field_Value+' </td> </tr>';
-                            //    flg_ec_=false;
-                            //}
-                            //if(element.field_Name.substring(0,2)!="ec_" && flg_ec_==false)
-                            //{
-                            //    htmltext_ec_ += ' </tbody> </table>';
-                            //    document.getElementById("spn_ezhar").innerHTML=htmltext_ec_;
-                            //    document.getElementById('spn_tashkhis').style.backgroundColor="green";
-                            //    flg_ec_=true;
-                            //}
+                            if(element.field_Name.split('_')[0]=="ec" && element.field_Value != "")
+                            {
+                                htmltext_ec_+=' <tr><td>'+element.field_Name +': </td>' +' <td>'+element.field_Value+' </td> </tr>';
+                                flg_ec_=false;
+                            }
+                            if(element.field_Name.split('_')[0]!="ec" && flg_ec_==false)
+                            {
+                                htmltext_ec_ += ' </tbody> </table>';
+                                document.getElementById("spn_eteraz").innerHTML=htmltext_ec_;
+                                document.getElementById('spn_eteraz_label').style.backgroundColor="green";
+                                flg_ec_=true;
+                            }
                          
                                 //---------------------------------------------
                             if(element.field_Name.substring(0,2)=="b_" && element.field_Value != "")
@@ -385,18 +385,18 @@ function GetDetails(sh_ezharname) {
                                 flg_b_=true;
                             }
                                 //---------------------------------------------
-                            //if(element.field_Name.substring(0,2)=="bc_" && element.field_Value != "")
-                            //{
-                            //    htmltext_bc_+=' <tr><td>'+element.field_Name.split('_')[1] +': </td>' +' <td>'+element.field_Value+' </td> </tr>';
-                            //    flg_bc_=false;
-                            //}
-                            //if(element.field_Name.substring(0,2)!="bc_" && flg_bc_==false)
-                            //{
-                            //    htmltext_bc_ += ' </tbody> </table>';
-                            //    document.getElementById("spn_ezhar").innerHTML=htmltext_bc_;
-                            //    document.getElementById('spn_tashkhis').style.backgroundColor="green";
-                            //    flg_bc_=true;
-                            //}
+                            if(element.field_Name.split('_')[0]=="bc" && element.field_Value != "")
+                            {
+                                htmltext_bc_+=' <tr><td>'+element.field_Name.split('_')[1] +': </td>' +' <td>'+element.field_Value+' </td> </tr>';
+                                flg_bc_=false;
+                            }
+                            if(element.field_Name.split('_')[0]!="bc" && flg_bc_==false)
+                            {
+                                htmltext_bc_ += ' </tbody> </table>';
+                                document.getElementById("spn_badvi").innerHTML=htmltext_bc_;
+                                document.getElementById('spn_badvi_label').style.backgroundColor="green";
+                                flg_bc_=true;
+                            }
                                 //---------------------------------------------
                             if(element.field_Name.split('_')[0]=="tn" && element.field_Value != "" )
                             {
@@ -411,18 +411,18 @@ function GetDetails(sh_ezharname) {
                                 flg_tn_=true;
                             }
                                 //---------------------------------------------
-                                //if(element.field_Name.substring(0,2)=="tnc_" && element.field_Value != "")
-                                //{
-                                //    htmltext_tnc_+=' <tr><td>'+element.field_Name +': </td>' +' <td>'+element.field_Value+' </td> </tr>';
-                                //    flg_tnc_=false;
-                                //}
-                                //if(element.field_Name.substring(0,2)!="tn_" && flg_tnc_==false)
-                                // {
-                                //    htmltext_tnc_ += ' </tbody> </table>';
-                                //    document.getElementById("spn_ezhar").innerHTML=htmltext_tnc_;
-                                //    document.getElementById('spn_tashkhis').style.backgroundColor="green";
-                                //    flg_tnc_=true;
-                                // }
+                                if(element.field_Name.split('_')[0]=="tnc" && element.field_Value != "")
+                                {
+                                    htmltext_tnc_+=' <tr><td>'+element.field_Name +': </td>' +' <td>'+element.field_Value+' </td> </tr>';
+                                    flg_tnc_=false;
+                                }
+                                if(element.field_Name.split('_')[0]!="tnc" && flg_tnc_==false)
+                                 {
+                                    htmltext_tnc_ += ' </tbody> </table>';
+                                    document.getElementById("spn_heiattajdid").innerHTML=htmltext_tnc_;
+                                    document.getElementById('spn_heiattajdid_label').style.backgroundColor="green";
+                                    flg_tnc_=true;
+                                 }
                                 //---------------------------------------------
                                 if(element.field_Name.split('_')[0]=="gh" && element.field_Value != "" )
                                 {
